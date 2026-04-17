@@ -1,0 +1,19 @@
+{
+  "name": "Python Dev Environment",
+  "image": "mcr.microsoft.com/devcontainers/python:3.10",
+  "features": {
+    "ghcr.io/devcontainers/features/python:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.pylance",
+        "ms-python.debugpy",
+        "ms-vscode.vscode-json",
+        "ms-vscode.vscode-yaml"
+      ]
+    }
+  },
+  "postCreateCommand": "pip install -r requirements.txt"
+}
