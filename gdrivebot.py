@@ -856,10 +856,4 @@ if __name__ == '__main__':
         app.add_handler(CommandHandler('sum', sum_file))
         app.add_handler(MessageHandler(filters.PHOTO, handle_photo))
         app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_text))
-        
-        logger.info('✅ Bot online! Siap melayani...')
-        print('✅ Bot running! Access via Telegram.')
-        app.run_polling(drop_pending_updates=True)
-    except Exception as e:
-        logger.error(f'❌ Bot error: {e}', exc_info=True)
-        raise
+       
