@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  gdrivebot:
+    build: .
+    container_name: gdrivebot
+    environment:
+      - BOT_TOKEN=${BOT_TOKEN}
+      - CLAUDE_API=${CLAUDE_API}
+      - LOG_LEVEL=INFO
+    volumes:
+      - ./credentials.json:/app/credentials/credentials.json:ro
+      - ./token.pickle:/app/data/token.pickle
+      - ./finance_data.json:/app/data/finance_data.json
+    restart: unless-stopped
+    networks:
+      - bot_network
+    healthcheck:
+      test: ["CMD", "python", "-c", "import requests; requests.head('https://api.telegram.org')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+
+networks:
+  bot_network:
+    driver: bridge
